@@ -1,0 +1,30 @@
+#container{
+    background-color:rgba(190, 190, 190, 0.658);
+    height:140px;
+    width: 220px;
+    box-shadow: 4px 4px 0 ;
+}
+
+.box {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin: 0;
+  background-color: #87cefa;
+  vertical-align: top;
+}
+
+#first {
+  background-color: #23c6cc;
+  border: 1px solid #0c0908;
+}
+
+#second {
+  background-color: #eb9516;
+  border: 1px solid #0c0908;
+}
+
+.button{
+    background-color: rgb(41, 228, 88);
+}
+
