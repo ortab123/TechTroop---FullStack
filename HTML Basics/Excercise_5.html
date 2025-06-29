@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+  <style>
+
+  </style>
+</head>
+<body>
+
+  <h1>Contact Us</h1>
+
+    <fieldset>
+      <legend><strong>Personal Information</strong></legend>
+      
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required><br><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required><br><br>
+
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567"><br><br>
+    </fieldset>
+
+    <fieldset>
+      <legend><strong>Message Details</strong></legend>
+      <p>
+      <label for="subject">Subject:</label>
+      <select id="subject" name="subject" required>
+        <option value="">Select subject</option><br>
+        <option value="general">General Inquiry</option>
+        <option value="support">Support</option>
+        <option value="feedback">Feedback</option>
+      </select><br>
+      </p>
+
+      <p>
+      <label>Priority:</label>
+      <input type="radio" id="low" name="priority" value="low">
+      <label for="low">Low</label>
+      <input type="radio" id="medium" name="priority" value="medium">
+      <label for="medium">Medium</label>
+      <input type="radio" id="high" name="priority" value="high">
+      <label for="high">High</label><br>
+    </p>
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" placeholder="Your message..." rows="4" cols="40" required></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend><strong>Preferences</strong></legend>
+      
+      <input type="checkbox" id="newsletter" name="newsletter">
+      <label for="newsletter">Subscribe to newsletter</label><br><br>
+
+      <label for="contact-method">Contact Method:</label>
+      <select id="contact-method" name="contact-method">
+        <option value="email">Email</option>
+        <option value="phone">Phone</option>
+      </select><br><br>
+    </fieldset>
+    <br>
+
+    <input type="submit" value="Send Message">
+    <input type="reset" value="Reset">
+
+  </form>
+
+</body>
+</html>
