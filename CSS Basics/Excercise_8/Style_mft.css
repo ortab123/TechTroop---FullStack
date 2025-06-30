@@ -1,0 +1,30 @@
+body{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: blanchedalmond;
+}
+
+.myfavoritefood{
+    background-color: white;
+}
+
+.myfavoriteactivities{
+    background-color: white;
+}
+
+.explanation{
+font-family: cursive;
+}
+
+h1{
+color: rgb(202, 82, 13);
+text-align: center;
+}
+
+h2{
+    color:aliceblue;
+    background-color:cadetblue ;
+}
+
+strong{
+    color: rgb(202, 82, 13);
+}
