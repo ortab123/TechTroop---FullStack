@@ -1,0 +1,20 @@
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.left-section {
+    background-color: pink;
+    height: 100px;
+    width: calc(100% - 20px);
+}
+
+.right-section { 
+    background-color: lightcoral;
+    height: 100px;
+    width: 20px;
+}
