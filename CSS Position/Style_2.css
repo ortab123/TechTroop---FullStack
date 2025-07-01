@@ -1,0 +1,25 @@
+#parent{
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  position: relative;
+}
+
+.child{
+  background-color: red;
+  position: absolute;
+}
+
+#child-1{
+  left:0;
+  top: 30px;
+  width: 200px;
+  height: 10px;
+}
+
+#child-2{
+  top: 0;
+  left:30px;
+  width: 10px  ;
+  height: 200px;
+}
