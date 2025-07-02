@@ -1,0 +1,58 @@
+.flexbox-container{
+    display: flex;
+    height: 550px;
+    border: 5px solid pink;
+    padding-left: 50px;
+}
+
+.flexbox-item{
+    border-radius: 10px;
+} 
+
+.flexbox-item1{
+  display: flex;                
+  flex-direction: column;     
+  justify-content: flex-end;    
+  width: 400px;
+}
+
+.bar{
+    margin-bottom: 5%;
+}
+
+.bar1{
+    background-color: pink;
+    width: 70%;
+    height: 15px;
+
+}
+
+.bar2{
+    background-color: pink;
+    width: 70%;
+    height: 15px;
+
+}
+
+.bar3{
+    background-color: pink;
+    width: 50%;
+    height: 15px;
+
+}
+
+.divider {
+  width: 10px;
+  height: 100%;
+  background-color: pink;
+  margin-right: 40px;
+}
+
+.flexbox-item2{
+  color: gray;
+  text-align: left;
+  width: auto;
+  justify-content: center;
+  align-content: center;
+}
+

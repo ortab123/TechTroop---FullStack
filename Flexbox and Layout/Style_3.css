@@ -1,0 +1,28 @@
+.flexbox-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    border: 2px solid lightgray;
+}
+
+.flexbox-item1{
+    background-color: rgb(113, 193, 230);
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin-right: 60px;
+}
+
+.divider {
+  width: 2px;
+  height: 100%;
+  background-color: lightgray;
+  margin-right: 60px;
+}
+
+.flexbox-item2{
+  max-width: 300px;
+  text-align: left;
+}
+

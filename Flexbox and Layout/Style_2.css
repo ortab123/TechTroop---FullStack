@@ -1,0 +1,30 @@
+.flexbox-container1{
+display: flex;
+border: 2px solid gray;
+}
+
+.flexbox-container2{
+    display: flex;
+    border: 2px solid gray;
+}
+
+.flexbox-item{
+    width: 25%;
+    margin: 2px;
+    border: 3px solid white;
+    background-color: rgb(113, 193, 230);
+    min-height: 100px;
+
+}
+
+.flexbox-item5{
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+
+.flexbox-item6, .flexbox-item7{
+    flex-grow: 2;
+    flex-basis: 0;
+}
+
