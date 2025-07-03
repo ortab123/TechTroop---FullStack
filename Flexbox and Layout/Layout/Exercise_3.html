@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="Style_3.css" />
+  </head>
+  <body>
+    <div class="background">
+      <form class="form-container">
+        <h1>Contact Form</h1>
+        <p class="subtitle">Get in touch with us</p>
+
+        <div class="row">
+          <div class="input-group">
+            <label>First Name</label>
+            <input type="text" />
+          </div>
+          <div class="input-group">
+            <label>Last Name</label>
+            <input type="text" />
+          </div>
+        </div>
+
+        <div class="input-group full-width">
+          <label>Email Address</label>
+          <input type="email" />
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+            <label>Subject</label>
+            <select>
+              <option>Select a topic</option>
+              <option>Support</option>
+              <option>Billing</option>
+              <option>Feedback</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Priority</label>
+            <select>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group full-width">
+          <label>Message</label>
+          <textarea placeholder="Tell us how we can help..."></textarea>
+        </div>
+
+        <div class="preferences">
+          <label>Contact Preferences</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" /> Email Updates</label>
+            <label><input type="checkbox" /> Phone Follow-up</label>
+            <label><input type="checkbox" /> Newsletter</label>
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button type="button" class="draft">Save Draft</button>
+          <button type="submit" class="send">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
