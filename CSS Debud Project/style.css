@@ -30,6 +30,10 @@ body {
 }
 
 .sidebar-header {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #5dade2;
+    padding: 1.5rem 1rem;
     padding: 1.5rem;
     border-bottom: 1px solid #34495e;
     text-align: center;
@@ -53,15 +57,13 @@ body {
     list-style: none;
 }
 
-.nav-item {
-    margin-bottom: 1.5rem;
-}
-
 .nav-link {
     padding: 0.5rem 1rem;
     color: #bdc3c7;
     text-decoration: none;
      transition: background-color 0.3s, color 0.3s;
+       display: block;
+  width: 100%;
 }
 
 .nav-item .active .nav-link {
@@ -78,6 +80,7 @@ body {
 
 .main-content {
     padding: 2rem;
+    margin-left: 200px;
 }
 
 .header-bar {
