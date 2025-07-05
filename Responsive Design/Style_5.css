@@ -94,7 +94,7 @@ body{
 }
 
 @media screen and (min-width: 900px) {
-  .card-left {
+   .card-left {
     width: 40%;
   }
   
