@@ -4,27 +4,29 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 12px;
 }
 
 body {
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-line-height: 1;
-font-size: 1rem;
-margin: 0;
-padding: 0;
-color: #A4ACBA;
-
+  font-family: "Inter";
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  color: #A4ACBA;
 }
 
 h1 { font-size: 2.5rem; 
-color:#414B5C;
+  color:#414B5C;
 }
 
 h2 { font-size: 2rem;
-color: #414B5C;
- }
+  color: #414B5C;
+}
 
-h3 { font-size: 1.5rem; }
+h3 { 
+  font-size: 1.5rem;
+}
 
 .container {
   display: flex;
@@ -36,43 +38,42 @@ h3 { font-size: 1.5rem; }
 }
 
 .content-left{
-    width: 60%;
-    max-width: 600px;
-    
+  width: 60%;
+  max-width: 600px;
 }
 
 .content-right{
-    width: 20%;
+  width: 20%;
 }
 
 header{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 6rem;
+  padding: 1.5rem 6rem;
   height: 44px; 
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
+.nav-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
 .nav-bar a{
-    justify-content: end;
-    padding: 4px 8px;
-    font-size: 1rem;
-    color: #a3adbb;
-    text-decoration: none;
-    /* font-weight: bold; */
+  justify-content: end;
+  padding: 4px 8px;
+  font-size: 1rem;
+  color: #a3adbb;
+  text-decoration: none;
 }
 
 .name{
-    color: #6892EC;
+  color: #6892EC;
+  margin:0 ;
 }
 
 #hero {
-  background-image: url('images/gray-background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #f0f3f7;
 }
 
 .hero-content {
@@ -85,7 +86,6 @@ header{
 .hero-left { 
   flex: 1;
   min-width: 300px;
-
 }
 
 .hero-left h1 {
@@ -101,16 +101,16 @@ header{
 }
 
 #getintouch-button{
-    background: linear-gradient(90deg, #2562ee 0%, #4f83f1 100%);
-    color: white;
-    font-size: 1rem;
-    font-weight: 500;
-    border: 1px solid #1c4ec6;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  background: linear-gradient(90deg, #2562ee 0%, #4f83f1 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #1c4ec6;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #getintouch-button:hover {
@@ -125,16 +125,15 @@ header{
 }
 
 .hero-photo{
-    width: 190px;
-    height: 190px;
-    display: flex;
+  width: 190px;
+  height: 190px;
+  display: flex;
 }
 
 .hero-photo > img{
-  /* aspect-ratio: 1/1; */
-    border-radius: 50%;
-    height: 100%;
-    width: 100%;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
 }
 
 
@@ -181,10 +180,7 @@ header{
 }
 
 #projects{
-  background-image: url('images/gray-background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+background-color: #f7fafc;
   padding: 1.5rem 2rem;
 }
 
@@ -199,7 +195,7 @@ header{
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
-    max-width: 900px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -233,7 +229,6 @@ header{
 .project-content h3 {
   margin-top: 0;
   color: #737C8A;
-
   font-size: 1.1rem;
 }
 
@@ -274,17 +269,17 @@ input, textarea {
 }
 
 #send-message{
-    background: linear-gradient(90deg, #2562ee 0%, #4f83f1 100%);
-    color: white;
-    font-size: 1rem;
-    font-weight: 500;
-    max-width: 150px;
-    border: 1px solid #1c4ec6;
-    border-radius: 4px;
-    padding: 5px 10px;
-    cursor: pointer;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  background: linear-gradient(90deg, #2562ee 0%, #4f83f1 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  max-width: 150px;
+  border: 1px solid #1c4ec6;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .contact-info {
@@ -343,4 +338,83 @@ footer{
   padding: 1.5rem 2rem;
   color: #828B98;
   text-align: center;
+}
+
+#overlay{
+  display: none;
+  position:absolute;
+  top: 44px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 999;         
+}
+
+#overlay div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#overlay a{
+  text-decoration: none;
+  color: #1a1b1b;
+}
+
+@media (max-width:620px){
+  .container{
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem 1rem;
+  }
+
+  .content-right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+/* 
+ #skills {
+    text-align: left;
+  }
+  
+  #skills .skills-list {
+    margin: 0;
+  }
+  
+  #skills .skill {
+    justify-content: space-between; 
+  } */
+
+  .nav-links{
+    display: none;  
+  }
+  .hamburger{
+    display: block;
+  }
+  .hero-photo{
+    margin-top:2rem ;
+  }
+  
+  .project-card{
+    width: 100%;
+  }
+  
+  #send-message{
+    align-self: center;
+  }
+}
+
+@media (min-width:621px){
+  .nav-links{
+    display: block;
+
+  }
+    .hamburger{
+    display: none;
+  }
 }

@@ -3,29 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+    <script src="main.js"></script>
     <title>Or Tabibian - Portfolio</title>
   </head>
   <body>
     <header>
-      <!-- <div class="container"> -->
-      <h3 class="name">Or Tabibian</h3>
       <nav class="nav-bar">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <h3 class="name">Or Tabibian</h3>
+        <div class="nav-links">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
       </nav>
-      <!-- </div> -->
     </header>
-
     <section id="hero">
       <div class="container hero-content">
         <div id="hero-left" class="content-left">
           <h1>Full-Stack Developer</h1>
           <p>
-            I create beautiful and functional web experiences using modern
-            technologies. Passionate about clean code and user-centered design.
+            I build modern, responsive web applications that combine aesthetics
+            with functionality. I’m driven by a passion for clean, efficient
+            code and always aim to craft seamless, user-focused digital
+            experiences.
           </p>
           <button id="getintouch-button">Get In Touch</button>
         </div>
@@ -38,39 +47,46 @@
       <div class="container">
         <div id="about-left" class="content-left">
           <h2>About Me</h2>
-          <p>I'm a web developer who loves clean code and good design...</p>
+          <p>
+            I'm a computer science graduate and a dedicated full-stack developer
+            with a strong focus on clean code and intuitive user experiences. I
+            specialize in HTML, CSS, and JavaScript, and enjoy turning ideas
+            into fast, responsive, and maintainable web applications. I'm always
+            looking to improve my skills and stay up to date with the latest
+            technologies. When I'm not coding, I enjoy listening to music,
+            staying active at the gym, playing basketball or tennis and watching
+            stand-ups.
+          </p>
         </div>
 
         <div id="skills" class="content-right">
-          <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-list">
-              <div class="skill">
-                <span class="skill-name">JavaScript</span>
-                <div class="skill-bar">
-                  <div class="skill-fill" style="width: 90%"></div>
-                </div>
-              </div>
-              <div class="skill">
-                <span class="skill-name">React</span>
-                <div class="skill-bar">
-                  <div class="skill-fill" style="width: 80%"></div>
-                </div>
-              </div>
-              <div class="skill">
-                <span class="skill-name">NodeJS</span>
-                <div class="skill-bar">
-                  <div class="skill-fill" style="width: 75%"></div>
-                </div>
-              </div>
-              <div class="skill">
-                <span class="skill-name">MongoDB</span>
-                <div class="skill-bar">
-                  <div class="skill-fill" style="width: 65%"></div>
-                </div>
+          <h2>Skills</h2>
+          <div class="skills-list">
+            <div class="skill">
+              <span class="skill-name">JavaScript</span>
+              <div class="skill-bar">
+                <div class="skill-fill" style="width: 90%"></div>
               </div>
             </div>
-          </section>
+            <div class="skill">
+              <span class="skill-name">React</span>
+              <div class="skill-bar">
+                <div class="skill-fill" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <span class="skill-name">NodeJS</span>
+              <div class="skill-bar">
+                <div class="skill-fill" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <span class="skill-name">C/C++</span>
+              <div class="skill-bar">
+                <div class="skill-fill" style="width: 65%"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -185,5 +201,13 @@
       </div>
     </section>
     <footer>© 2024 Or Tabibian. All rights reserved.</footer>
+    <div id="overlay">
+      <div>
+        <a onclick="jumptosection()" href="#hero">Home</a>
+        <a onclick="jumptosection()" href="#about">About</a>
+        <a onclick="jumptosection()" href="#projects">Projects</a>
+        <a onclick="jumptosection()" href="#contact">Contact</a>
+      </div>
+    </div>
   </body>
 </html>
