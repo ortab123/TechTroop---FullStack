@@ -110,6 +110,7 @@ header{
   padding: 10px 20px;
   cursor: pointer;
   display: inline-block;
+  text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -377,18 +378,13 @@ footer{
   align-items: center;
   text-align: center;
 }
-/* 
- #skills {
+
+  #skills .skills-list {
+    width: 65%;
+  }
+  .skill-name{
     text-align: left;
   }
-  
-  #skills .skills-list {
-    margin: 0;
-  }
-  
-  #skills .skill {
-    justify-content: space-between; 
-  } */
 
   .nav-links{
     display: none;  
@@ -399,7 +395,7 @@ footer{
   .hero-photo{
     margin-top:2rem ;
   }
-  
+
   .project-card{
     width: 100%;
   }
