@@ -71,7 +71,7 @@ console.log(capitalize("bOb")); // returns Bob
 console.log(capitalize("TAYLOR")); // returns Taylor
 console.log(capitalize("feliSHIA"));
 
-//Ex5
+//Ex6
 const determineWeather = (temp) => {
   if (temp > 25) {
     return "hot";
