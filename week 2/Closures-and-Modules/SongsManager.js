@@ -13,8 +13,8 @@ const SongsManager = function () {
   };
 
   return {
-    addSong: addSong,
-    getSong: getSong,
+    add: addSong,
+    get: getSong,
   };
 };
 
