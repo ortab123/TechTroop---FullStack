@@ -1,5 +1,8 @@
 class Exercises {
   isEven(n) {
+    if (typeof n !== "number") {
+      throw new TypeError("Input must be a number");
+    }
     return n % 2 == 0 ? true : false;
   }
 
@@ -15,6 +18,31 @@ class Exercises {
       .split("")
       .filter((c) => symbols.indexOf(c) == -1)
       .join("");
+  }
+
+  validate(arr) {
+    if (!Array.isArray(arr)) {
+      return { error: "Need at least one boolean" };
+    }
+
+    let numOfTrues = 0;
+    let numOfFalses = 0;
+
+    for (let item of arr) {
+      if (typeof item === "boolean") {
+        if (item) {
+          numOfTrues++;
+        } else {
+          numOfFalses++;
+        }
+      }
+    }
+    const totalBools = numOfTrues + numOfFalses;
+    if (totalBools === 0) {
+      return { error: "Need at least one boolean" };
+    }
+
+    return numOfTrues > numOfFalses;
   }
 }
 

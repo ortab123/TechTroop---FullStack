@@ -1,1 +1,28 @@
+# Node modules
 node_modules/
+
+# Coverage reports
+coverage/
+*.lcov
+*.lcov.info
+*.clover
+*.html
+
+# Logs
+*.log
+
+# Snapshots / screenshots
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Test outputs
+test-output/
