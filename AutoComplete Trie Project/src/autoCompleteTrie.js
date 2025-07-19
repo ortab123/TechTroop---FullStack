@@ -32,14 +32,8 @@ class AutoCompleteTrie {
   }
 
   predictWords(prefix) {
-    let currentNode = this;
-    for (let char of prefix) {
-      if (currentNode.children[char]) {
-        currentNode = currentNode.children[char];
-      } else {
-        return [];
-      }
-    }
+    const currentNode = this._getRemainingTree(prefix, this);
+    if (!currentNode) return [];
 
     const allWords = [];
     this._allWordsHelper(prefix, currentNode, allWords);
@@ -47,7 +41,16 @@ class AutoCompleteTrie {
   }
 
   _getRemainingTree(prefix, node) {
-    //used by predictWords
+    let currentNode = node;
+    for (let char of prefix) {
+      if (currentNode.children[char]) {
+        currentNode = currentNode.children[char];
+      } else {
+        return null;
+      }
+    }
+
+    return currentNode;
   }
 
   _allWordsHelper(prefix, node, allWords) {
