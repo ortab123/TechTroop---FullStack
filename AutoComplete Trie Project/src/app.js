@@ -92,7 +92,7 @@ rl.on("line", (line) => {
       console.log("  find <word>       - Check if word exists");
       console.log("  complete <prefix> - Get completions");
       console.log("  help              - Show this message");
-      console.log("  exit              - Quit program");
+      console.log("  exit              - Quit program\n");
       break;
 
     case "exit":

@@ -208,20 +208,17 @@ describe("predictWords", () => {
   });
 
   test("predictWords should return all words with given prefix", () => {
-    const result = trie.predictWords("ca");
-
+    const result = trie.predictWords("ca").map((x) => x.word);
     expect(result.sort()).toEqual(["cat", "car", "care", "card"].sort());
   });
 
   test("predictWords should return empty array for non-existing prefix", () => {
     const result = trie.predictWords("zoo");
-
     expect(result).toEqual([]);
   });
 
   test("predictWords should return all words for empty prefix", () => {
-    const result = trie.predictWords("");
-
+    const result = trie.predictWords("").map((x) => x.word);
     expect(result.sort()).toEqual(
       ["cat", "car", "care", "card", "dog", "do"].sort()
     );
@@ -229,20 +226,19 @@ describe("predictWords", () => {
 
   test("predictWords should return full word when prefix is a complete word", () => {
     const result = trie.predictWords("dog");
-
-    expect(result).toEqual(["dog"]);
+    expect(result).toEqual([{ word: "dog", freq: 0 }]);
   });
 
   test("predictWords should return words for single-letter prefix", () => {
-    const result = trie.predictWords("d");
-
+    const result = trie.predictWords("d").map((x) => x.word);
     expect(result.sort()).toEqual(["dog", "do"].sort());
   });
 
   test("predictWords should be case insensitive", () => {
     const trie = new AutoCompleteTrie();
     trie.addWord("Cat");
-    expect(trie.predictWords("C")).toContain("cat");
+    const result = trie.predictWords("C").map((x) => x.word);
+    expect(result).toContain("cat");
   });
 
   test("predictWords should return words sorted by frequency", () => {
@@ -251,11 +247,12 @@ describe("predictWords", () => {
     trie.incrementUsage("cat");
 
     const result = trie.predictWords("ca");
-    expect(result).toEqual(["car", "cat", "care", "card"]);
+    expect(result.map((x) => x.word)).toEqual(["car", "cat", "care", "card"]);
+    expect(result.map((x) => x.freq)).toEqual([2, 1, 0, 0]); // אופציונלי
   });
 
   test("predictWords should return same words if all frequencies are zero", () => {
-    const result = trie.predictWords("ca");
+    const result = trie.predictWords("ca").map((x) => x.word);
     expect(result.sort()).toEqual(["cat", "car", "care", "card"].sort());
   });
 
@@ -266,7 +263,8 @@ describe("predictWords", () => {
     trie.incrementUsage("car");
 
     const result = trie.predictWords("car");
-    expect(result).toEqual(["card", "car", "care"]);
+    expect(result.map((x) => x.word)).toEqual(["card", "car", "care"]);
+    expect(result.map((x) => x.freq)).toEqual([3, 1, 0]); // אופציונלי
   });
 });
 

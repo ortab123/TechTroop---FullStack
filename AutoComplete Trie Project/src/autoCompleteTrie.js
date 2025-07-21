@@ -6,24 +6,14 @@ class AutoCompleteTrie {
   }
 
   addWord(word) {
-    if (word.includes(" ")) {
-      throw new Error("Only single words allowed");
-    }
-
-    if (!/^[a-zA-Z]*$/.test(word)) {
-      throw new Error("Only alphabetic characters allowed");
-    }
-
-    word = word.toLowerCase();
+    word = this._prepareWord(word, false);
     let currentNode = this;
 
     for (let char of word) {
       if (!currentNode.children[char]) {
         currentNode.children[char] = new AutoCompleteTrie(char);
-        currentNode = currentNode.children[char];
-      } else {
-        currentNode = currentNode.children[char];
       }
+      currentNode = currentNode.children[char];
     }
 
     currentNode.endOfWord = true;
@@ -34,11 +24,7 @@ class AutoCompleteTrie {
   }
 
   findWord(word) {
-    if (!/^[a-zA-Z]*$/.test(word)) {
-      throw new Error("Only alphabetic characters allowed");
-    }
-
-    word = word.toLowerCase();
+    word = this._prepareWord(word);
     let currentNode = this;
 
     for (let char of word) {
@@ -53,11 +39,7 @@ class AutoCompleteTrie {
   }
 
   predictWords(prefix) {
-    if (!/^[a-zA-Z]*$/.test(prefix)) {
-      throw new Error("Only alphabetic characters allowed");
-    }
-
-    prefix = prefix.toLowerCase();
+    prefix = this._prepareWord(prefix);
     const currentNode = this._getRemainingTree(prefix, this);
 
     if (!currentNode) return [];
@@ -69,8 +51,27 @@ class AutoCompleteTrie {
     return allWordsWithFreq;
   }
 
+  incrementUsage(word) {
+    word = this._prepareWord(word);
+    let currentNode = this;
+
+    for (let char of word) {
+      if (currentNode.children[char]) {
+        currentNode = currentNode.children[char];
+      } else {
+        throw new Error(`'${word}' does not exist in dictionary`);
+      }
+    }
+
+    if (!currentNode.endOfWord) {
+      throw new Error(`'${word}' does not exist in dictionary`);
+    }
+
+    currentNode.frequency++;
+    return currentNode.frequency;
+  }
+
   _getRemainingTree(prefix, node) {
-    prefix = prefix.toLowerCase();
     let currentNode = node;
 
     for (let char of prefix) {
@@ -98,28 +99,19 @@ class AutoCompleteTrie {
     }
   }
 
-  incrementUsage(word) {
-    if (!/^[a-zA-Z]+$/.test(word)) {
+  _validateAlphaOnly(str) {
+    if (!/^[a-zA-Z]*$/.test(str)) {
       throw new Error("Only alphabetic characters allowed");
     }
+  }
 
-    word = word.toLowerCase();
-    let currentNode = this;
-
-    for (let char of word) {
-      if (currentNode.children[char]) {
-        currentNode = currentNode.children[char];
-      } else {
-        throw new Error(`'${word}' does not exist in dictionary`);
-      }
+  _prepareWord(str, allowSpaces = false) {
+    if (!allowSpaces && str.includes(" ")) {
+      throw new Error("Only single words allowed");
     }
 
-    if (!currentNode.endOfWord) {
-      throw new Error(`'${word}' does not exist in dictionary`);
-    }
-
-    currentNode.frequency++;
-    return currentNode.frequency;
+    this._validateAlphaOnly(str.replace(/\s+/g, ""));
+    return str.toLowerCase();
   }
 }
 
