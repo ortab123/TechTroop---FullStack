@@ -1,6 +1,6 @@
 class AutoCompleteTrie {
-  constructor(value, children, endOfWord) {
-    this.value = "";
+  constructor(value = "") {
+    this.value = value;
     this.children = {};
     this.endOfWord = false;
   }
