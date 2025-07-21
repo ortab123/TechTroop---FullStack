@@ -6,6 +6,10 @@ class AutoCompleteTrie {
   }
 
   addWord(word) {
+    if (word.includes(" ")) {
+      throw new Error("Only single words allowed");
+    }
+
     let currentNode = this;
     for (let char of word) {
       if (!currentNode.children[char]) {
