@@ -10,7 +10,9 @@ class AutoCompleteTrie {
       throw new Error("Only single words allowed");
     }
 
+    word = word.toLowerCase();
     let currentNode = this;
+
     for (let char of word) {
       if (!currentNode.children[char]) {
         currentNode.children[char] = new AutoCompleteTrie(char);
@@ -23,7 +25,9 @@ class AutoCompleteTrie {
   }
 
   findWord(word) {
+    word = word.toLowerCase();
     let currentNode = this;
+
     for (let char of word) {
       if (currentNode.children[char]) {
         currentNode = currentNode.children[char];
@@ -36,7 +40,9 @@ class AutoCompleteTrie {
   }
 
   predictWords(prefix) {
+    prefix = prefix.toLowerCase();
     const currentNode = this._getRemainingTree(prefix, this);
+
     if (!currentNode) return [];
 
     const allWords = [];
@@ -45,7 +51,9 @@ class AutoCompleteTrie {
   }
 
   _getRemainingTree(prefix, node) {
+    prefix = prefix.toLowerCase();
     let currentNode = node;
+
     for (let char of prefix) {
       if (currentNode.children[char]) {
         currentNode = currentNode.children[char];

@@ -54,6 +54,13 @@ test("findWord should return false for prefix that is not a full word", () => {
   expect(trie.findWord("car")).toBeFalsy();
 });
 
+test("findWord should be case insensitive", () => {
+  const trie = new AutoCompleteTrie();
+  trie.addWord("Cat");
+  expect(trie.findWord("cat")).toBeTruthy();
+  expect(trie.findWord("CAT")).toBeTruthy();
+});
+
 //_getRemainingTree
 describe("_getRemainingTree", () => {
   let trie;
@@ -179,5 +186,11 @@ describe("predictWords", () => {
     const result = trie.predictWords("d");
 
     expect(result.sort()).toEqual(["dog", "do"].sort());
+  });
+
+  test("predictWords should be case insensitive", () => {
+    const trie = new AutoCompleteTrie();
+    trie.addWord("Cat");
+    expect(trie.predictWords("C")).toContain("cat");
   });
 });
