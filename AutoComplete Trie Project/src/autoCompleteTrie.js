@@ -65,13 +65,15 @@ class AutoCompleteTrie {
   }
 }
 
-const trie = new AutoCompleteTrie();
+module.exports = AutoCompleteTrie;
 
-const wordsToAdd = ["cat", "car", "card", "care", "dog", "doom"];
-wordsToAdd.forEach((word) => trie.addWord(word));
+// const trie = new AutoCompleteTrie();
 
-console.log(trie.predictWords("ca")); // ["cat", "car", "card", "care"]
-console.log(trie.predictWords("car")); // ["car", "card", "care"]
-console.log(trie.predictWords("do")); // ["dog", "doom"]
-console.log(trie.predictWords("cat")); // ["cat"]
-console.log(trie.predictWords("z")); // []
+// const wordsToAdd = ["cat", "car", "card", "care", "dog", "doom"];
+// wordsToAdd.forEach((word) => trie.addWord(word));
+
+// console.log(trie.predictWords("ca")); // ["cat", "car", "card", "care"]
+// console.log(trie.predictWords("car")); // ["car", "card", "care"]
+// console.log(trie.predictWords("do")); // ["dog", "doom"]
+// console.log(trie.predictWords("cat")); // ["cat"]
+// console.log(trie.predictWords("z")); // []
