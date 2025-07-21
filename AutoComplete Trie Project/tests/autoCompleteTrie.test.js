@@ -61,3 +61,40 @@ describe("_getRemainingTree", () => {
     expect(node).toBe(trie);
   });
 });
+
+//_allWordsHelper
+describe("_allWordsHelper", () => {
+  let trie;
+
+  beforeEach(() => {
+    trie = new AutoCompleteTrie();
+    ["car", "card", "care", "cat", "dog"].forEach((word) => trie.addWord(word));
+  });
+
+  test("should collect all words from a given node", () => {
+    const node = trie._getRemainingTree("car", trie);
+    const words = [];
+    trie._allWordsHelper("car", node, words);
+
+    expect(words.sort()).toEqual(["car", "card", "care"].sort());
+  });
+
+  test("should return empty if no words at node", () => {
+    const node = trie._getRemainingTree("z", trie);
+    const words = [];
+    if (node) {
+      trie._allWordsHelper("z", node, words);
+    }
+    expect(words).toEqual([]);
+  });
+
+  test("should collect one word if it's a full word", () => {
+    const node = trie._getRemainingTree("dog", trie);
+    const words = [];
+    trie._allWordsHelper("dog", node, words);
+
+    expect(words).toEqual(["dog"]);
+  });
+});
+
+//predictWords
