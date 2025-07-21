@@ -10,7 +10,7 @@ class AutoCompleteTrie {
       throw new Error("Only single words allowed");
     }
 
-    if (!/^[a-zA-Z]+$/.test(word)) {
+    if (!/^[a-zA-Z]*$/.test(word)) {
       throw new Error("Only alphabetic characters allowed");
     }
 
@@ -29,7 +29,7 @@ class AutoCompleteTrie {
   }
 
   findWord(word) {
-    if (!/^[a-zA-Z]+$/.test(word)) {
+    if (!/^[a-zA-Z]*$/.test(word)) {
       throw new Error("Only alphabetic characters allowed");
     }
 
@@ -48,7 +48,7 @@ class AutoCompleteTrie {
   }
 
   predictWords(prefix) {
-    if (!/^[a-zA-Z]+$/.test(prefix)) {
+    if (!/^[a-zA-Z]*$/.test(prefix)) {
       throw new Error("Only alphabetic characters allowed");
     }
 

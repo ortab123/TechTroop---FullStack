@@ -1,5 +1,40 @@
 const AutoCompleteTrie = require("../src/autoCompleteTrie");
 
+//validation
+describe("Validation tests", () => {
+  let trie;
+
+  beforeEach(() => {
+    trie = new AutoCompleteTrie();
+  });
+
+  test("addWord should throw error for non-alphabetic word", () => {
+    expect(() => trie.addWord("hello!")).toThrow(
+      "Only alphabetic characters allowed"
+    );
+    expect(() => trie.addWord("123abc")).toThrow(
+      "Only alphabetic characters allowed"
+    );
+    expect(() => trie.addWord("good-day")).toThrow(
+      "Only alphabetic characters allowed"
+    );
+  });
+
+  test("findWord should throw error for non-alphabetic word", () => {
+    trie.addWord("hello");
+    expect(() => trie.findWord("hello!")).toThrow(
+      "Only alphabetic characters allowed"
+    );
+  });
+
+  test("predictWords should throw error for non-alphabetic prefix", () => {
+    trie.addWord("hello");
+    expect(() => trie.predictWords("hel!")).toThrow(
+      "Only alphabetic characters allowed"
+    );
+  });
+});
+
 //addWord
 test("addWord should create nodes for each character", () => {
   const trie = new AutoCompleteTrie();
