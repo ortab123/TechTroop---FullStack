@@ -7,17 +7,19 @@ Supports word insertion, lookup, usage tracking (frequency), and intelligent pre
 
 ## 📁 Project Structure
 
+```
 autocomplete-project/
 │
 ├── src/
-│ ├── autoCompleteTrie.js # Core Trie class with autocomplete logic
-│ └── app.js # Text-based console app (UI placeholder)
+│ ├── autoCompleteTrie.js
+│ └── app.js
 │
 ├── tests/
-│ └── autoCompleteTrie.test.js # Full unit test suite (Jest)
+│ └── autoCompleteTrie.test.js
 │
-├── package.json # Project metadata and dependencies
-└── README.md # Project documentation
+├── package.json
+└── README.md
+```
 
 ---
 
