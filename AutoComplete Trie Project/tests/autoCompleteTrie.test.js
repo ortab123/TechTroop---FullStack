@@ -194,6 +194,17 @@ describe("_allWordsHelper", () => {
     expect(words.map((w) => w.word)).toEqual(["code"]);
     expect(words[0].freq).toBe(2);
   });
+
+  test("_allWordsHelper should default freq to 0 if undefined", () => {
+    const trie = new AutoCompleteTrie();
+    trie.children["x"] = new AutoCompleteTrie("x");
+    trie.children["x"].endOfWord = true;
+
+    const words = [];
+    trie._allWordsHelper("x", trie.children["x"], words);
+
+    expect(words[0]).toEqual({ word: "x", freq: 0 });
+  });
 });
 
 //predictWords
@@ -248,7 +259,7 @@ describe("predictWords", () => {
 
     const result = trie.predictWords("ca");
     expect(result.map((x) => x.word)).toEqual(["car", "cat", "care", "card"]);
-    expect(result.map((x) => x.freq)).toEqual([2, 1, 0, 0]); // אופציונלי
+    expect(result.map((x) => x.freq)).toEqual([2, 1, 0, 0]);
   });
 
   test("predictWords should return same words if all frequencies are zero", () => {
@@ -264,7 +275,7 @@ describe("predictWords", () => {
 
     const result = trie.predictWords("car");
     expect(result.map((x) => x.word)).toEqual(["card", "car", "care"]);
-    expect(result.map((x) => x.freq)).toEqual([3, 1, 0]); // אופציונלי
+    expect(result.map((x) => x.freq)).toEqual([3, 1, 0]);
   });
 });
 
