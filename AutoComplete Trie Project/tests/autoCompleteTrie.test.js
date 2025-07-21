@@ -14,9 +14,20 @@ test("addWord should create nodes for each character", () => {
 
 test("addWord should throw error for multiple words", () => {
   const trie = new AutoCompleteTrie();
+
   expect(() => {
     trie.addWord("persian cat");
   }).toThrow("Only single words allowed");
+});
+
+test("nodes should be reused for shared prefixes", () => {
+  const trie = new AutoCompleteTrie();
+  trie.addWord("cat");
+  const aNodeBefore = trie.children["c"].children["a"];
+  trie.addWord("car");
+  const aNodeAfter = trie.children["c"].children["a"];
+
+  expect(aNodeBefore).toBe(aNodeAfter);
 });
 
 //findWord
@@ -24,6 +35,7 @@ test("findWord should find word in the tree", () => {
   let trie = new AutoCompleteTrie();
   trie.addWord("cat");
   const bool = trie.findWord("cat");
+
   expect(bool).toBeTruthy();
 });
 
@@ -31,7 +43,15 @@ test("findWord should not find word in the tree", () => {
   let trie = new AutoCompleteTrie();
   trie.addWord("cat");
   const bool = trie.findWord("dog");
+
   expect(bool).toBeFalsy();
+});
+
+test("findWord should return false for prefix that is not a full word", () => {
+  const trie = new AutoCompleteTrie();
+  trie.addWord("carpet");
+
+  expect(trie.findWord("car")).toBeFalsy();
 });
 
 //_getRemainingTree
@@ -43,22 +63,33 @@ describe("_getRemainingTree", () => {
     ["car", "card", "care", "cat"].forEach((word) => trie.addWord(word));
   });
 
-  test("should return the node for existing prefix", () => {
+  test("_getRemainingTree should return the node for existing prefix", () => {
     const node = trie._getRemainingTree("car", trie);
+
     expect(node).not.toBeNull();
     expect(node.value).toBe("r");
     expect(node.children["d"]).toBeDefined();
     expect(node.children["e"]).toBeDefined();
   });
 
-  test("should return null for non-existing prefix", () => {
+  test("_getRemainingTree should return null for non-existing prefix", () => {
     const node = trie._getRemainingTree("cap", trie);
+
     expect(node).toBeNull();
   });
 
-  test("should return root node for empty prefix", () => {
+  test("_getRemainingTree should return root node for empty prefix", () => {
     const node = trie._getRemainingTree("", trie);
+
     expect(node).toBe(trie);
+  });
+
+  test("_getRemainingTree should return null if prefix contains a character not in trie", () => {
+    const trie = new AutoCompleteTrie();
+    trie.addWord("hello");
+    const node = trie._getRemainingTree("he@llo", trie);
+
+    expect(node).toBeNull();
   });
 });
 
@@ -71,7 +102,7 @@ describe("_allWordsHelper", () => {
     ["car", "card", "care", "cat", "dog"].forEach((word) => trie.addWord(word));
   });
 
-  test("should collect all words from a given node", () => {
+  test("_allWordsHelper should collect all words from a given node", () => {
     const node = trie._getRemainingTree("car", trie);
     const words = [];
     trie._allWordsHelper("car", node, words);
@@ -79,22 +110,74 @@ describe("_allWordsHelper", () => {
     expect(words.sort()).toEqual(["car", "card", "care"].sort());
   });
 
-  test("should return empty if no words at node", () => {
+  test("_allWordsHelper should return empty if no words at node", () => {
     const node = trie._getRemainingTree("z", trie);
     const words = [];
     if (node) {
       trie._allWordsHelper("z", node, words);
     }
+
     expect(words).toEqual([]);
   });
 
-  test("should collect one word if it's a full word", () => {
+  test("_allWordsHelper should collect one word if it's a full word", () => {
     const node = trie._getRemainingTree("dog", trie);
     const words = [];
     trie._allWordsHelper("dog", node, words);
 
     expect(words).toEqual(["dog"]);
   });
+
+  test("_allWordsHelper should not add incomplete paths", () => {
+    const trie = new AutoCompleteTrie();
+    trie.children["a"] = new AutoCompleteTrie("a");
+    const words = [];
+    trie._allWordsHelper("a", trie.children["a"], words);
+
+    expect(words).toEqual([]);
+  });
 });
 
 //predictWords
+describe("predictWords", () => {
+  let trie;
+
+  beforeEach(() => {
+    trie = new AutoCompleteTrie();
+    ["cat", "car", "care", "card", "dog", "do"].forEach((word) =>
+      trie.addWord(word)
+    );
+  });
+
+  test("predictWords should return all words with given prefix", () => {
+    const result = trie.predictWords("ca");
+
+    expect(result.sort()).toEqual(["cat", "car", "care", "card"].sort());
+  });
+
+  test("predictWords should return empty array for non-existing prefix", () => {
+    const result = trie.predictWords("zoo");
+
+    expect(result).toEqual([]);
+  });
+
+  test("predictWords should return all words for empty prefix", () => {
+    const result = trie.predictWords("");
+
+    expect(result.sort()).toEqual(
+      ["cat", "car", "care", "card", "dog", "do"].sort()
+    );
+  });
+
+  test("predictWords should return full word when prefix is a complete word", () => {
+    const result = trie.predictWords("dog");
+
+    expect(result).toEqual(["dog"]);
+  });
+
+  test("predictWords should return words for single-letter prefix", () => {
+    const result = trie.predictWords("d");
+
+    expect(result.sort()).toEqual(["dog", "do"].sort());
+  });
+});
