@@ -229,3 +229,36 @@ describe("predictWords", () => {
     expect(trie.predictWords("C")).toContain("cat");
   });
 });
+
+//incrementUsage
+test("incrementUsage increments existing word frequency", () => {
+  const trie = new AutoCompleteTrie();
+  trie.addWord("cat");
+  const freq1 = trie.incrementUsage("cat");
+  const freq2 = trie.incrementUsage("cat");
+  expect(freq1).toBe(1);
+  expect(freq2).toBe(2);
+});
+
+test("incrementUsage throws error for word not in trie", () => {
+  const trie = new AutoCompleteTrie();
+  expect(() => trie.incrementUsage("dog")).toThrow(
+    "'dog' does not exist in dictionary"
+  );
+});
+
+test("incrementUsage throws error for non-alphabetic word", () => {
+  const trie = new AutoCompleteTrie();
+  expect(() => trie.incrementUsage("c@t")).toThrow(
+    "Only alphabetic characters allowed"
+  );
+});
+
+test("incrementUsage throws if word is only a prefix, not a full word", () => {
+  const trie = new AutoCompleteTrie();
+  trie.addWord("cat");
+  trie.children["c"].children["a"] = new AutoCompleteTrie("a");
+  expect(() => trie.incrementUsage("ca")).toThrow(
+    "'ca' does not exist in dictionary"
+  );
+});

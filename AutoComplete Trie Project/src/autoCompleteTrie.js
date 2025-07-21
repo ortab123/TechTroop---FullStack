@@ -25,6 +25,10 @@ class AutoCompleteTrie {
         currentNode = currentNode.children[char];
       }
     }
+
+    if (currentNode.frequency === undefined) {
+      currentNode.frequency = 0;
+    }
     currentNode.endOfWord = true;
   }
 
@@ -86,6 +90,30 @@ class AutoCompleteTrie {
       const child = node.children[char];
       this._allWordsHelper(prefix + char, child, allWords);
     }
+  }
+
+  incrementUsage(word) {
+    if (!/^[a-zA-Z]+$/.test(word)) {
+      throw new Error("Only alphabetic characters allowed");
+    }
+
+    word = word.toLowerCase();
+    let currentNode = this;
+
+    for (let char of word) {
+      if (currentNode.children[char]) {
+        currentNode = currentNode.children[char];
+      } else {
+        throw new Error(`'${word}' does not exist in dictionary`);
+      }
+    }
+
+    if (!currentNode.endOfWord) {
+      throw new Error(`'${word}' does not exist in dictionary`);
+    }
+
+    currentNode.frequency++;
+    return currentNode.frequency;
   }
 }
 
