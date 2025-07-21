@@ -10,6 +10,10 @@ class AutoCompleteTrie {
       throw new Error("Only single words allowed");
     }
 
+    if (!/^[a-zA-Z]+$/.test(word)) {
+      throw new Error("Only alphabetic characters allowed");
+    }
+
     word = word.toLowerCase();
     let currentNode = this;
 
@@ -25,6 +29,10 @@ class AutoCompleteTrie {
   }
 
   findWord(word) {
+    if (!/^[a-zA-Z]+$/.test(word)) {
+      throw new Error("Only alphabetic characters allowed");
+    }
+
     word = word.toLowerCase();
     let currentNode = this;
 
@@ -40,6 +48,10 @@ class AutoCompleteTrie {
   }
 
   predictWords(prefix) {
+    if (!/^[a-zA-Z]+$/.test(prefix)) {
+      throw new Error("Only alphabetic characters allowed");
+    }
+
     prefix = prefix.toLowerCase();
     const currentNode = this._getRemainingTree(prefix, this);
 
@@ -78,14 +90,3 @@ class AutoCompleteTrie {
 }
 
 module.exports = AutoCompleteTrie;
-
-// const trie = new AutoCompleteTrie();
-
-// const wordsToAdd = ["cat", "car", "card", "care", "dog", "doom"];
-// wordsToAdd.forEach((word) => trie.addWord(word));
-
-// console.log(trie.predictWords("ca")); // ["cat", "car", "card", "care"]
-// console.log(trie.predictWords("car")); // ["car", "card", "care"]
-// console.log(trie.predictWords("do")); // ["dog", "doom"]
-// console.log(trie.predictWords("cat")); // ["cat"]
-// console.log(trie.predictWords("z")); // []

@@ -21,11 +21,15 @@ rl.on("line", (line) => {
   switch (command) {
     case "add":
       if (args.length !== 1) {
-        console.log("✗ Usage: add <word>");
+        console.log("✗ Usage: add only one word at a time");
       } else {
         const word = args[0];
-        trie.addWord(word);
-        console.log(`✓ Added '${word}' to dictionary`);
+        try {
+          trie.addWord(word);
+          console.log(`✓ Added '${word}' to dictionary\n`);
+        } catch (err) {
+          console.log(`✗ ${err.message}\n`);
+        }
       }
       break;
 
@@ -34,25 +38,35 @@ rl.on("line", (line) => {
         console.log("✗ Usage: find <word>");
       } else {
         const word = args[0];
-        const found = trie.findWord(word);
-        if (found) {
-          console.log(`✓ '${word}' exists in dictionary`);
-        } else {
-          console.log(`✗ '${word}' not found in dictionary`);
+        try {
+          const found = trie.findWord(word);
+          if (found) {
+            console.log(`✓ '${word}' exists in dictionary\n`);
+          } else {
+            console.log(`✗ '${word}' not found in dictionary\n`);
+          }
+        } catch (err) {
+          console.log(`✗ ${err.message}\n`);
         }
       }
       break;
 
     case "complete":
       if (args.length !== 1) {
-        console.log("✗ Usage: complete <prefix>");
+        console.log("✗ Usage: complete <prefix>\n");
       } else {
         const prefix = args[0];
-        const suggestions = trie.predictWords(prefix);
-        if (suggestions.length > 0) {
-          console.log(`Suggestions for '${prefix}': ${suggestions.join(", ")}`);
-        } else {
-          console.log(`No suggestions found for '${prefix}'`);
+        try {
+          const suggestions = trie.predictWords(prefix);
+          if (suggestions.length > 0) {
+            console.log(
+              `Suggestions for '${prefix}': ${suggestions.join(", ")}\n`
+            );
+          } else {
+            console.log(`No suggestions found for '${prefix}'\n`);
+          }
+        } catch (err) {
+          console.log(`✗ ${err.message}\n`);
         }
       }
       break;
@@ -69,10 +83,12 @@ rl.on("line", (line) => {
     case "exit":
       console.log("Goodbye!");
       rl.close();
-      break;
+      return;
 
     default:
-      console.log(`✗ Unknown command: '${command}' (type 'help' for commands)`);
+      console.log(
+        `✗ Unknown command: '${command}' (type 'help' for commands)\n`
+      );
   }
 
   rl.prompt();
