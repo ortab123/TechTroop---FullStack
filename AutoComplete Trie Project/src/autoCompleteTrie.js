@@ -26,10 +26,11 @@ class AutoCompleteTrie {
       }
     }
 
-    if (currentNode.frequency === undefined) {
+    currentNode.endOfWord = true;
+
+    if (typeof currentNode.frequency !== "number") {
       currentNode.frequency = 0;
     }
-    currentNode.endOfWord = true;
   }
 
   findWord(word) {
@@ -61,9 +62,11 @@ class AutoCompleteTrie {
 
     if (!currentNode) return [];
 
-    const allWords = [];
-    this._allWordsHelper(prefix, currentNode, allWords);
-    return allWords;
+    const allWordsWithFreq = [];
+    this._allWordsHelper(prefix, currentNode, allWordsWithFreq);
+    allWordsWithFreq.sort((a, b) => b.freq - a.freq);
+
+    return allWordsWithFreq;
   }
 
   _getRemainingTree(prefix, node) {
@@ -83,7 +86,10 @@ class AutoCompleteTrie {
 
   _allWordsHelper(prefix, node, allWords) {
     if (node.endOfWord) {
-      allWords.push(prefix);
+      allWords.push({
+        word: prefix,
+        freq: node.frequency ?? 0,
+      });
     }
 
     for (let char in node.children) {

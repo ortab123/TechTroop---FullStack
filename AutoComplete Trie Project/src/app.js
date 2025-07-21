@@ -59,14 +59,29 @@ rl.on("line", (line) => {
         try {
           const suggestions = trie.predictWords(prefix);
           if (suggestions.length > 0) {
-            console.log(
-              `Suggestions for '${prefix}': ${suggestions.join(", ")}\n`
-            );
+            const formatted = suggestions
+              .map((entry) => `${entry.word} (${entry.freq})`)
+              .join(", ");
+            console.log(`Suggestions for '${prefix}': ${formatted}\n`);
           } else {
             console.log(`No suggestions found for '${prefix}'\n`);
           }
         } catch (err) {
           console.log(`✗ ${err.message}\n`);
+        }
+      }
+      break;
+
+    case "use":
+      if (args.length !== 1) {
+        console.log("✗ Usage: add only one word at a time");
+      } else {
+        const word = args[0];
+        try {
+          const frequency = trie.incrementUsage(word);
+          console.log(`✓ Increment usage for '${word}' (now ${frequency})\n`);
+        } catch (error) {
+          console.log(`✗ ${error.message}`);
         }
       }
       break;

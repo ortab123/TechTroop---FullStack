@@ -149,7 +149,9 @@ describe("_allWordsHelper", () => {
     const words = [];
     trie._allWordsHelper("car", node, words);
 
-    expect(words.sort()).toEqual(["car", "card", "care"].sort());
+    expect(words.map((w) => w.word).sort()).toEqual(
+      ["car", "card", "care"].sort()
+    );
   });
 
   test("_allWordsHelper should return empty if no words at node", () => {
@@ -167,7 +169,7 @@ describe("_allWordsHelper", () => {
     const words = [];
     trie._allWordsHelper("dog", node, words);
 
-    expect(words).toEqual(["dog"]);
+    expect(words.map((w) => w.word)).toEqual(["dog"]);
   });
 
   test("_allWordsHelper should not add incomplete paths", () => {
@@ -177,6 +179,20 @@ describe("_allWordsHelper", () => {
     trie._allWordsHelper("a", trie.children["a"], words);
 
     expect(words).toEqual([]);
+  });
+
+  test("_allWordsHelper collects words with correct frequency handling", () => {
+    const trie = new AutoCompleteTrie();
+    trie.addWord("code");
+    trie.incrementUsage("code");
+    trie.incrementUsage("code");
+
+    const node = trie._getRemainingTree("code", trie);
+    const words = [];
+    trie._allWordsHelper("code", node, words);
+
+    expect(words.map((w) => w.word)).toEqual(["code"]);
+    expect(words[0].freq).toBe(2);
   });
 });
 
@@ -227,6 +243,30 @@ describe("predictWords", () => {
     const trie = new AutoCompleteTrie();
     trie.addWord("Cat");
     expect(trie.predictWords("C")).toContain("cat");
+  });
+
+  test("predictWords should return words sorted by frequency", () => {
+    trie.incrementUsage("car");
+    trie.incrementUsage("car");
+    trie.incrementUsage("cat");
+
+    const result = trie.predictWords("ca");
+    expect(result).toEqual(["car", "cat", "care", "card"]);
+  });
+
+  test("predictWords should return same words if all frequencies are zero", () => {
+    const result = trie.predictWords("ca");
+    expect(result.sort()).toEqual(["cat", "car", "care", "card"].sort());
+  });
+
+  test("predictWords should return most used word first when prefix is full word", () => {
+    trie.incrementUsage("card");
+    trie.incrementUsage("card");
+    trie.incrementUsage("card");
+    trie.incrementUsage("car");
+
+    const result = trie.predictWords("car");
+    expect(result).toEqual(["card", "car", "care"]);
   });
 });
 
