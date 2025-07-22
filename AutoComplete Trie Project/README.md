@@ -1,36 +1,53 @@
-# 🔤 AutoComplete Trie Project
+# 🔤 AutoComplete Trie Project (MVC Architecture)
 
-A simple and efficient implementation of an **AutoComplete system using a Trie data structure**, written in JavaScript.  
-Supports word insertion, lookup, usage tracking (frequency), and intelligent prefix-based predictions.
+An efficient and modular **AutoComplete system** built in **JavaScript**, using a **Trie data structure**  
+and following the **MVC (Model-View-Controller)** architectural pattern.
 
 ---
 
-## 📁 Project Structure
+## 📦 Project Structure
 
-```
 autocomplete-project/
 │
 ├── src/
-│ ├── autoCompleteTrie.js
-│ └── app.js
+│ ├── models/
+│ │ └── autoCompleteTrie.js ← Trie logic (Model)
+│ ├── views/
+│ │ └── view.js ← CLI output handling (View)
+│ ├── controllers/
+│ │ └── trieController.js ← Command handler (Controller)
+│ └── app.js ← CLI Entry point
 │
 ├── tests/
-│ └── autoCompleteTrie.test.js
+│ ├── autoCompleteTrie.test.js ← Unit tests for Model
+│ ├── view.test.js ← Unit tests for View (mocked)
+│ └── trieController.test.js ← Unit tests for Controller (mocked)
 │
 ├── package.json
 └── README.md
-```
 
 ---
 
 ## 🚀 Features
 
-- Add words to the Trie
-- Predict words based on prefix (sorted by usage frequency)
-- Increment word frequency when used
-- Case-insensitive behavior
-- Validates inputs (only alphabetic characters)
-- Fully tested with 100% coverage
+- ✅ Add words to the dictionary
+- ✅ Predict words by prefix (sorted by usage frequency)
+- ✅ Track word usage via `incrementUsage`
+- ✅ Full input validation (alphabetic-only, single-word)
+- ✅ Case-insensitive
+- ✅ Clean MVC structure (Model-View-Controller)
+- ✅ Fully unit-tested (Model, View, Controller)
+
+---
+
+## 🧠 Architecture Overview
+
+| Layer      | Responsibility                         |
+| ---------- | -------------------------------------- |
+| Model      | Trie data structure & word logic       |
+| View       | Handels CLI output (console.log)       |
+| Controller | Receives user commands and routes them |
+| App        | Entry point (CLI interface + readline) |
 
 ---
 
@@ -38,30 +55,45 @@ autocomplete-project/
 
 This project uses **Jest** for unit testing.
 
-To run the tests:
+To run tests with coverage:
 
 ```bash
 npm install
 npx jest --coverage
-You should see:
 
-Test Suites: 1 passed, 1 total
-Tests:       34 passed, 34 total
+Test Suites: 3 passed, 3 total
+Tests:       45+ passed
 Coverage:    100% statements, 100% branches, 100% functions, 100% lines
+```
 
-✅ Example Usage
-const AutoCompleteTrie = require('./autoCompleteTrie');
+🛡️ Validation Rules
+Only alphabetic characters allowed
 
-const trie = new AutoCompleteTrie();
-trie.addWord("cat");
-trie.addWord("car");
-trie.incrementUsage("cat");
+Spaces are not allowed in addWord
 
-console.log(trie.predictWords("ca"));
-// → [{ word: "cat", freq: 1 }, { word: "car", freq: 0 }]
+Errors are thrown on:
 
-🛡️ Validation
-Only alphabetic characters are allowed.
-Spaces are not allowed in addWord.
-Errors are thrown on invalid operations.
+Invalid characters (e.g. "he!llo")
+
+Prefixes that are not complete words (incrementUsage("ca"))
+
+Using non-existing words
+
+📌 Run the CLI App
+
+```
+node src/app.js
+```
+
+Example commands:
+
+> add hello
+> find hello
+> complete he
+> use hello
+> help
+> exit
+
+```
+
 ```
