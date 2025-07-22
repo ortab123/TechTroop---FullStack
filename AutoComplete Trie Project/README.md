@@ -10,11 +10,11 @@ and following the **MVC (Model-View-Controller)** architectural pattern.
 ```
 autocomplete-project/
 ├── src/
-│   ├── models/
+│   ├── model/
 │   │   └── autoCompleteTrie.js      ← Trie logic (Model)
-│   ├── views/
+│   ├── view/
 │   │   └── view.js                  ← CLI output handling (View)
-│   ├── controllers/
+│   ├── controller/
 │   │   └── trieController.js       ← Command handler (Controller)
 │   └── app.js                      ← CLI Entry point
 │
