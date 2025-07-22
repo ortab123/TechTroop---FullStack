@@ -1,4 +1,4 @@
-const AutoCompleteTrie = require("../src/autoCompleteTrie");
+const AutoCompleteTrie = require("../src/models/autoCompleteTrie");
 
 //validation
 describe("Validation tests", () => {

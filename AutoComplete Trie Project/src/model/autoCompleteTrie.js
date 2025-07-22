@@ -99,12 +99,6 @@ class AutoCompleteTrie {
     }
   }
 
-  _validateAlphaOnly(str) {
-    if (!/^[a-zA-Z]*$/.test(str)) {
-      throw new Error("Only alphabetic characters allowed");
-    }
-  }
-
   _prepareWord(str, allowSpaces = false) {
     if (!allowSpaces && str.includes(" ")) {
       throw new Error("Only single words allowed");
@@ -112,6 +106,12 @@ class AutoCompleteTrie {
 
     this._validateAlphaOnly(str.replace(/\s+/g, ""));
     return str.toLowerCase();
+  }
+
+  _validateAlphaOnly(str) {
+    if (!/^[a-zA-Z]*$/.test(str)) {
+      throw new Error("Only alphabetic characters allowed");
+    }
   }
 }
 
