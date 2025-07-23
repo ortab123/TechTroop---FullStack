@@ -63,11 +63,18 @@ const createForm = (e) => {
   const isPhoneValid = validatePhone();
 
   if (isNameValid && isSalaryValid && isBirthdayValid && isPhoneValid) {
-    const success = document.createElement("p");
-    success.innerText = "Form submitted successfully!";
-    success.style.color = "white";
-    success.classList.add("success-message");
-    document.getElementById("container").appendChild(success);
+    const form = document.getElementById("container");
+    form.style.display = "none";
+
+    const name = document.getElementById("name").value.trim();
+
+    const welcomeMessage = document.createElement("h2");
+    welcomeMessage.innerText = `Welcome, ${name}!`;
+    welcomeMessage.style.color = "#1abc9c";
+    welcomeMessage.style.textAlign = "center";
+    welcomeMessage.style.marginTop = "50px";
+
+    document.body.appendChild(welcomeMessage);
   }
 };
 
