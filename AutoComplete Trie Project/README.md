@@ -38,13 +38,12 @@ autocomplete-project/
 
 ## 🚀 Features
 
-- ✅ Add words to the dictionary
-- ✅ Predict words by prefix (sorted by usage frequency)
-- ✅ Track word usage via `incrementUsage`
-- ✅ Full input validation (alphabetic-only, single-word)
-- ✅ Case-insensitive
-- ✅ Clean MVC structure (Model-View-Controller)
-- ✅ Fully unit-tested (Model, View, Controller)
+🔍 Prefix-based suggestions using Trie traversal
+📈 Ranked suggestions based on word usage frequency
+➕ Add new words dynamically
+❌ Duplicate word detection
+✅ Visual feedback (success/error messages)
+🧪 Unit tested components for CLI
 
 ---
 
