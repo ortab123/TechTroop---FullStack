@@ -71,6 +71,20 @@ class AutoCompleteTrie {
     return currentNode.frequency;
   }
 
+  countWords() {
+    let count = 0;
+
+    function dfs(node) {
+      if (node.endOfWord) count++;
+      for (const child of Object.values(node.children)) {
+        dfs(child);
+      }
+    }
+
+    dfs(this);
+    return count;
+  }
+
   _getRemainingTree(prefix, node) {
     let currentNode = node;
 
@@ -115,4 +129,4 @@ class AutoCompleteTrie {
   }
 }
 
-module.exports = AutoCompleteTrie;
+export default AutoCompleteTrie;
