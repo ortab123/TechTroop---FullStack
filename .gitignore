@@ -6,7 +6,6 @@ coverage/
 *.lcov
 *.lcov.info
 *.clover
-*.html
 
 # Logs
 *.log

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Form</title>
+  </head>
+  <body>
+    <form id="container">
+      <div id="name-container">
+        <h3 class="name">Name</h3>
+        <input type="text" id="name" placeholder="Enter your name" required />
+      </div>
+      <div id="salary-birthday-container">
+        <h3 class="salay">Desired Salary</h3>
+        <input
+          type="number"
+          id="salary"
+          placeholder="Enter your salary"
+          required
+        />
+        <h3 class="birthday">Birthday</h3>
+        <input type="date" id="birthday" required />
+      </div>
+      <div id="phone-number">
+        <h3 class="phone">Phone Number</h3>
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Enter your phone number"
+          required
+        />
+      </div>
+      <button type="submit" id="submit">Submit</button>
+    </form>
+    <script src="Ex4.js"></script>
+  </body>
+</html>
