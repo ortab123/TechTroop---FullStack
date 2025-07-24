@@ -4,12 +4,23 @@ const trie = new AutoCompleteTrie();
 
 const trieWebController = {
   addWord(word) {
+    if (trie.findWord(word)) {
+      throw new Error(`'${word}' already exists in dictionary`);
+    }
+
     trie.addWord(word);
-    console.log(trie.countWords());
   },
 
   getWordCount() {
     return trie.countWords();
+  },
+
+  getSuggestions(prefix) {
+    return trie.predictWords(prefix).map((obj) => obj.word);
+  },
+
+  useWord(word) {
+    return trie.incrementUsage(word);
   },
 };
 

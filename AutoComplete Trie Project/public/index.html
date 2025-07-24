@@ -18,11 +18,14 @@
       </div>
       <div id="add-message" class="hidden"></div>
 
-      <input
-        type="text"
-        id="search-word"
-        placeholder="Start typing to see suggestions..."
-      />
+      <div id="search-wrapper">
+        <input
+          type="text"
+          id="search-word"
+          placeholder="Start typing to see suggestions..."
+        />
+        <ul id="suggestions-list" class="hidden"></ul>
+      </div>
       <div id="dictionary">
         <p id="word-count"><strong>0</strong></p>
         <p id="word-in-dicionary">Words in Dictionary</p>

@@ -8,14 +8,34 @@ document.addEventListener("DOMContentLoaded", () => {
   addButton.addEventListener("click", () => {
     const word = domView.getEnteredWord();
 
-    if (!word) return;
+    if (!word) {
+      domView.showErrorMessage("Cannot add empty word.");
+      return;
+    }
 
-    trieWebController.addWord(word);
-    domView.clearInput();
-    domView.showAddedMessage(word);
-
-    const count = trieWebController.getWordCount();
-
-    domView.updateWordCount(count);
+    try {
+      trieWebController.addWord(word);
+      domView.clearInput();
+      domView.showAddedMessage(word);
+      const count = trieWebController.getWordCount();
+      domView.updateWordCount(count);
+    } catch (err) {
+      domView.showErrorMessage(`Cannot add "${word}": ${err.message}`);
+    }
   });
+});
+
+document.getElementById("search-word").addEventListener("input", (e) => {
+  const prefix = e.target.value.trim();
+  if (!prefix) {
+    domView.showSuggestions([]);
+    return;
+  }
+
+  try {
+    const suggestions = trieWebController.getSuggestions(prefix);
+    domView.showSuggestions(suggestions);
+  } catch (err) {
+    domView.showErrorMessage(err.message);
+  }
 });
