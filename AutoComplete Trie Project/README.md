@@ -1,7 +1,13 @@
 # 🔤 AutoComplete Trie Project (MVC Architecture)
 
-An efficient and modular **AutoComplete system** built in **JavaScript**, using a **Trie data structure**  
-and following the **MVC (Model-View-Controller)** architectural pattern.
+An efficient and modular AutoComplete system built in JavaScript, using a Trie data structure
+and following the MVC (Model-View-Controller) architectural pattern.
+
+✨ This project supports two usage modes:
+
+Command-Line Interface (CLI) for terminal-based interaction.
+
+Web UI with an interactive search box, ranked suggestions, and real-time feedback.
 
 ---
 
@@ -11,17 +17,20 @@ and following the **MVC (Model-View-Controller)** architectural pattern.
 autocomplete-project/
 ├── src/
 │   ├── model/
-│   │   └── autoCompleteTrie.js      ← Trie logic (Model)
+│   │   └── autoCompleteTrie.js       ← Trie logic(Model)
 │   ├── view/
-│   │   └── view.js                  ← CLI output handling (View)
+│   │   ├── view.js                   ← CLI output handling (View)
+│   │   └── domView.js                ← Web UI view logic
 │   ├── controller/
-│   │   └── trieController.js       ← Command handler (Controller)
-│   └── app.js                      ← CLI Entry point
+│   │   ├── trieController.js         ← CLI command handler (Controller)
+│   │   └── trieWebController.js      ← Web UI controller
+│   ├── app.js                        ← CLI entry point
+│   └── index.html                    ← Web UI HTML entry point
 │
 ├── tests/
-│   ├── autoCompleteTrie.test.js    ← Unit tests for Model
-│   ├── view.test.js                ← Unit tests for View (mocked)
-│   └── trieController.test.js      ← Unit tests for Controll(mocked)
+│   ├── autoCompleteTrie.test.js      ← Unit tests for Model
+│   ├── view.test.js                  ← Unit tests for CLI View (mocked)
+│   └── trieController.test.js        ← Unit tests for CLI Controller (mocked)
 │
 ├── package.json
 └── README.md
