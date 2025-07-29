@@ -1,5 +1,5 @@
 function fetchGiphy(searchTerm, limit = 1) {
-  const apiKey = "K9xP3nrqjzHId5TSo1EqOBqOMI3c4sJA";
+  const apiKey = "";
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(searchTerm)}&limit=${limit}`;
 
   fetch(url)

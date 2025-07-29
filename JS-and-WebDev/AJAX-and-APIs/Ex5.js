@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 function fetchGiphy(limit = 1) {
   const inputValue = $("#searchTerm").val();
-  const apiKey = "K9xP3nrqjzHId5TSo1EqOBqOMI3c4sJA";
+  const apiKey = "";
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(inputValue)}&limit=${limit}`;
 
   fetch(url)
