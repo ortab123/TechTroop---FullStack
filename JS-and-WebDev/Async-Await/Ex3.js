@@ -56,7 +56,7 @@ async function dashboard() {
   }
 }
 
-let result; // משתנה גלובלי
+let result;
 dashboard().then((data) => {
   result = data;
   console.log("Ready! You can now test `result` in the console.");
