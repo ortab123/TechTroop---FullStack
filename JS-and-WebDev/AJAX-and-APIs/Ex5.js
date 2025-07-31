@@ -1,3 +1,5 @@
+import { secret } from "./secrets.js";
+
 $(document).ready(function () {
   $("#searchBtn").on("click", function () {
     fetchGiphy();
@@ -6,7 +8,7 @@ $(document).ready(function () {
 
 function fetchGiphy(limit = 1) {
   const inputValue = $("#searchTerm").val();
-  const apiKey = "";
+  const apiKey = secret.api_key;
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(inputValue)}&limit=${limit}`;
 
   fetch(url)

@@ -1,5 +1,7 @@
+import { secret } from "./secrets.js";
+
 function fetchGiphy(searchTerm, limit = 1) {
-  const apiKey = "";
+  const apiKey = secret.api_key;
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(searchTerm)}&limit=${limit}`;
 
   fetch(url)
