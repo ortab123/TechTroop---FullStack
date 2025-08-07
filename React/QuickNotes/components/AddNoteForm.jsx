@@ -1,19 +1,27 @@
 import { useState } from "react";
 import "./AddNoteForm.css";
 
-export default function AddNoteForm({ onAddNote }) {
-  const [noteTitle, setNoteTitle] = useState("");
-  const [noteText, setNoteText] = useState("");
+export default function AddNoteForm({
+  onAddNote,
+  initialTitle = "",
+  initialText = "",
+  isEditMode = false,
+}) {
+  const [noteTitle, setNoteTitle] = useState(initialTitle);
+  const [noteText, setNoteText] = useState(initialText);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (noteText.trim() === "") return;
     onAddNote(noteTitle, noteText);
-    setNoteTitle("");
-    setNoteText("");
+    if (!isEditMode) {
+      setNoteTitle("");
+      setNoteText("");
+    }
   };
 
   return (
-    <div className="add-note">
+    <form className="add-note" onSubmit={handleSubmit}>
       <input
         className="title-input"
         placeholder="Title"
@@ -30,9 +38,9 @@ export default function AddNoteForm({ onAddNote }) {
           e.target.style.height = `${e.target.scrollHeight}px`;
         }}
       />
-      <button onClick={handleSubmit} className="add-btn">
-        Add
+      <button type="submit" className="add-btn">
+        {isEditMode ? "Update Note" : "Add"}
       </button>
-    </div>
+    </form>
   );
 }

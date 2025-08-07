@@ -5,7 +5,7 @@ import NoteCard from "../components/NoteCard.jsx";
 import NoteModal from "../components/NoteModal.jsx";
 import "./NotesApp.css";
 
-export default function AddNote() {
+export default function NotesApp() {
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,7 +14,8 @@ export default function AddNote() {
     const newNote = {
       title,
       text,
-      date: format(new Date(), "MMM do h:mm a"),
+      createdAt: format(new Date(), "MMM do h:mm a"),
+      updatedAt: null,
     };
     setNotes([...notes, newNote]);
   };
@@ -36,6 +37,21 @@ export default function AddNote() {
     setIsModalOpen(false);
     setSelectedNote(null);
   };
+
+  const handleUpdateNote = (updatedNote) => {
+    const updatedNotes = notes.map((note) =>
+      note === selectedNote
+        ? {
+            ...note,
+            ...updatedNote,
+            updatedAt: format(new Date(), "MMM do h:mm a"),
+          }
+        : note
+    );
+    setNotes(updatedNotes);
+    handleCloseModal();
+  };
+
   return (
     <div className="app">
       <AddNoteForm onAddNote={handleAddNote} />
@@ -49,11 +65,15 @@ export default function AddNote() {
           />
         ))}
       </div>
-      <NoteModal
-        note={selectedNote}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
+      {isModalOpen && selectedNote && (
+        <NoteModal
+          key={selectedNote.title + selectedNote.createdAt}
+          note={selectedNote}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onUpdateNote={handleUpdateNote}
+        />
+      )}
     </div>
   );
 }

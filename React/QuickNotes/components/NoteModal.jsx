@@ -1,8 +1,18 @@
 import Modal from "react-modal";
+import AddNoteForm from "./AddNoteForm";
 import "./NoteModal.css";
-Modal.setAppElement("#root");
+import { useState } from "react";
 
-export default function NoteModal({ note, isOpen, onClose }) {
+export default function NoteModal({ note, isOpen, onClose, onUpdateNote }) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  if (!note || !isOpen) return null;
+
+  const handleSubmit = (title, text) => {
+    onUpdateNote({ title, text });
+    setIsEditing(false);
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -11,17 +21,24 @@ export default function NoteModal({ note, isOpen, onClose }) {
       className="modal"
       overlayClassName="modal-overlay"
     >
-      {note && (
-        <div>
-          <small>{note.date}</small>
-          <h2>{note.title}</h2>
-          <p>{note.text}</p>
-          <br />
-          <button className="close-btn" onClick={onClose}>
-            Close
-          </button>
-        </div>
-      )}
+      <div>
+        {isEditing ? (
+          <AddNoteForm
+            onAddNote={handleSubmit}
+            initialTitle={note.title}
+            initialText={note.text}
+            isEditMode={true}
+          />
+        ) : (
+          <div>
+            <h2 onDoubleClick={() => setIsEditing(true)}>{note.title}</h2>
+            <p onDoubleClick={() => setIsEditing(true)}>{note.text}</p>
+          </div>
+        )}
+        <button className="close-btn" onClick={onClose}>
+          Close
+        </button>
+      </div>
     </Modal>
   );
 }

@@ -4,7 +4,6 @@ import "./NoteCard.css";
 export default function NoteCard({ note, onClick, onDelete }) {
   return (
     <div className="note" onClick={onClick}>
-      <small>{note.date}</small>
       <button
         className="delete-btn"
         onClick={(e) => {
@@ -16,6 +15,8 @@ export default function NoteCard({ note, onClick, onDelete }) {
       </button>
       <h5 className="title">{note.title}</h5>
       <p>{note.text}</p>
+      <small>Created: {note.createdAt}</small>
+      {note.updatedAt && <small> Updated: {note.updatedAt}</small>}
     </div>
   );
 }
