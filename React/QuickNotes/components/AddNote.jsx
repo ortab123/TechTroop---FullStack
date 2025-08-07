@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { FaTimes } from "react-icons/fa";
 
 export default function AddNote() {
+  const [noteTitle, setNoteTitle] = useState("");
   const [noteText, setNoteText] = useState("");
   const [notes, setNotes] = useState([]);
 
@@ -10,12 +11,14 @@ export default function AddNote() {
     if (noteText.trim() === "") return;
 
     const newNote = {
+      title: noteTitle,
       text: noteText,
       date: format(new Date(), "MMM do h:mm a"),
     };
 
     setNotes([...notes, newNote]);
     setNoteText("");
+    setNoteTitle("");
   };
 
   const handleDeleteNote = (index) => {
@@ -29,6 +32,12 @@ export default function AddNote() {
   return (
     <div className="app">
       <div className="add-note">
+        <input
+          className="title-input"
+          placeholder="Title"
+          value={noteTitle}
+          onChange={(e) => setNoteTitle(e.target.value)}
+        ></input>
         <textarea
           className="input-txt"
           placeholder="Your note..."
@@ -50,6 +59,7 @@ export default function AddNote() {
             >
               <FaTimes />
             </button>
+            <h5 className="title">{note.title}</h5>
             <p>{note.text}</p>
           </div>
         ))}
