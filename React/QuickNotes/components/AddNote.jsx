@@ -42,7 +42,11 @@ export default function AddNote() {
           className="input-txt"
           placeholder="Your note..."
           value={noteText}
-          onChange={(e) => setNoteText(e.target.value)}
+          onChange={(e) => {
+            setNoteText(e.target.value);
+            e.target.style.height = "auto";
+            e.target.style.height = `${e.target.scrollHeight}px`;
+          }}
         />
         <button onClick={handleClick} className="add-btn">
           Add
